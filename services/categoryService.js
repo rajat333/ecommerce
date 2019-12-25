@@ -2,6 +2,7 @@
 const setResponse = require('../application-utilities/SetResponse');
 const configrationHolder  = require('../configrations/ApplicationMessage'); 
 const domain = require('../model/index');
+const async  = require('async');
 
 async function listAllCategory(req,res){
 
@@ -24,33 +25,33 @@ async function insertCategory(req,res){
         var notInserted =[],inserted=[]; 
         let categoryInsertArray = [
             { name:"Nikon", type:"Mirrorless", model:"2018" },
-            { name:"Nikon", type:"point and shoot", model:"2018" },
-            { name:"Nikon", type:"full frame", model:"2018" },
+            { name:"Nikon", type:"abc", model:"2018" },
+            { name:"Nikon", type:"andd", model:"2018" },
         ];
         async.forEach( categoryInsertArray,async function(element,next){
-
+            console.log("element element ",element);
             let isExistCategory = await domain.Category.find({ name: element.name }).lean();
-            if(isExistCategory){
+            console.log("isExistCategory isExistCategory",isExistCategory);
+            if(isExistCategory.length >0){
+                console.log("ifi if if fif if f")
                 notInserted.push(element);
             }else{
-                let insertedCategory =  new domain.Category(element);
-                insertCategory.save(function(err,data){
-
-                        if(err){
-                            notInserted.push(element);
-                            console.log("errr insertion occur",err);
-                        }else{
-                            console.log('Inserted category',element);
-                            inserted.push(element);
-                        }
-                });
+                console.log("else else else")
+                let insertedCategory = await domain.Category.findOneAndUpdate({
+                    name: element.name,
+                },{ 
+                    $set: {  name:element.name, type:element.type, model:element.model }
+                },{ upsert: true});
+                inserted.push(insertedCategory);
+               console.log("insertedCategory insertedCategory",insertedCategory);
             }
+            next();
         },function(err){
             console.log("Task Completed");
             setResponse.setSuccess( configrationHolder.Success.InsertedCategory,
                 configrationHolder.InternalAppMessage.InsertedCategory,
-                {  notInserted: notInserted },false,res);
-        })
+                { inserted: inserted},false,res);
+        });
 
 }
 

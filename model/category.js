@@ -13,7 +13,8 @@ var CategorySchema = new Schema({
     type:{
       type: String,
       required: true,
-      enum: ["Mirrorless", "full frame", "point and shoot"]
+      enum: ["Mirrorless", "full frame", "point and shoot"],
+      default:"Mirrorless"
     },
     model: { 
       type: String, 
@@ -25,7 +26,7 @@ var CategorySchema = new Schema({
 var Category = mongoose.model('Category', CategorySchema);
 
 // on every save, add the date
-CategorySchema.pre('save', function(next) {
+CategorySchema.pre('findOneAndUpdate', function(next) {
     // get the current date
     console.log("pre save",this);
     var currentDate = new Date();
