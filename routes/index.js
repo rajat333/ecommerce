@@ -19,7 +19,7 @@ router.post('/category/insertion',authenticationMiddleware.authenticateUser, cat
 router.get('/product/list',authenticationMiddleware.authenticateUser,productCtrl.listAllProduct);
 router.post('/product/category',authenticationMiddleware.authenticateUser, productCtrl.getCategoryBasedProduct);
 router.post('/product/addtoCart',authenticationMiddleware.authenticateUser,productCtrl.addtoCart);
-router.post('/product/userCart',authenticationMiddleware.authenticateUser,productCtrl.getUserCart);
+router.get('/product/userCart',authenticationMiddleware.authenticateUser,productCtrl.getUserCart);
 router.post('/product/addProduct',authenticationMiddleware.authenticateUser,productCtrl.addProduct);
 
 module.exports = router;

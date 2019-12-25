@@ -89,7 +89,7 @@ async function addtoCart(req,res){
 var getUserCart = async function(req,res){
     console.log("getUserCart Prod Service loginUser",req.loginUser);
     try{
-        let cartList = await domain.Cart.find({ user: mongoose.Types.ObjectId(req.loginUser._id) }).lean()
+        let cartList = await domain.Cart.find({ user: mongoose.Types.ObjectId(req.loginUser._id) },{productInfo:1, _id:0}).lean();
         setResponse.setSuccess( configrationHolder.Success.GetCart,
             configrationHolder.InternalAppMessage.GetCart,
             { cartList: cartList },false,res);
