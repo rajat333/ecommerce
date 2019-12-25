@@ -4,14 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var middleware1 = require('./middleware/test');
-
 var envConfig = require('./configrations/environmentConfig').getEnvData();
 // Include Models
 var User = require('./model/user');
 
 // include Routers
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
 
 //db connection
 var dbConnection = require('./db-connectivity/dbConnection').dbConnection();
@@ -33,7 +31,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

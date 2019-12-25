@@ -3,7 +3,7 @@ var ErrorMessage = {
 
         ValidationFail: 'Please enter all the fields',
         LoginFail: 'Please enter valid username or password',
-        UserExist: 'User Exist With this username. Please choose different username',
+        UserExist: 'User Exist With this mailid. Please choose different mailid',
         ExceptionOccur : 'Sorry, we are facing some technical issue. Please try again later.',
 
 };
@@ -16,12 +16,12 @@ var SuccessMessage = {
 
 var InternalAppMessage = {
 
-       Login: 'edwisor.Login.Success',
-       Register: 'edwisor.Register.Success',
-       ValidationFail: 'edwisor.Validation.Fail',
-       ExceptionOccur: 'edwisor.Exception.Error',
-       LoginFail: 'edwisor.Login.Fail', 
-       UserExist: 'edwisor.Username.Exist'
+       Login: 'App.Login.Success',
+       Register: 'App.Register.Success',
+       ValidationFail: 'App.Validation.Fail',
+       ExceptionOccur: 'App.Exception.Error',
+       LoginFail: 'App.Login.Fail', 
+       UserExist: 'App.Username.Exist'
 }
 
 var Keys  = {

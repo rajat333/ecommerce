@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/registerUser',function(req,res,next){
-
+  console.log("in user file");
     userCtrl.registerUser(req,res,next);
 });
 

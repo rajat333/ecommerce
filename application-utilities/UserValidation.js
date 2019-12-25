@@ -3,7 +3,8 @@
 var registerValidation = function(jsonData){
     console.log('registerValidation ');
     var keys  = Object.keys(jsonData);
-     if( keys.includes('name') && keys.includes('username') 
+     if( keys.includes('name') 
+     //&& keys.includes('username') 
      && keys.includes('password') && keys.includes('confirmPassword')
      && keys.includes('email') && keys.includes('mobile')
      ){
@@ -36,7 +37,7 @@ var validateEmail = function(email) {
 var loginValidation = function(jsonData){
 
      var keys  = Object.keys(jsonData);
-     if( keys.includes('username') && keys.includes('password') )
+     if( keys.includes('email') && keys.includes('password') )
       return true;
      else
       return false; 
