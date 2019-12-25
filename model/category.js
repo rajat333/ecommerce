@@ -8,13 +8,11 @@ var CategorySchema = new Schema({
     name:  {
       type:String,
       required: true,
-
     } ,
     type:{
       type: String,
       required: true,
       enum: ["Mirrorless", "full frame", "point and shoot"],
-      default:"Mirrorless"
     },
     model: { 
       type: String, 
