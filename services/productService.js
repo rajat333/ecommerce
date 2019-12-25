@@ -25,11 +25,12 @@ async function listAllProduct(req,res){
 async function getCategoryBasedProduct(req,res){
 
             try{
-             let productList = domain.Product.find({  category: req.body.category }).lean();
+             let productList = await domain.Product.find({  category: req.body.category }).lean();
              setResponse.setSuccess( configrationHolder.Success.ProductBasedOnCategory,
                 configrationHolder.InternalAppMessage.ProductBasedOnCategory,
-                { categoryList: productList },false,res);
+                { productList: productList },false,res);
             }catch(e){
+                console.log("productList ",e);
                 setResponse.setSuccess( configrationHolder.Error.ExceptionOccur,
                     configrationHolder.InternalAppMessage.ExceptionOccur,
                     {},true,res);
