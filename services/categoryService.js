@@ -25,9 +25,9 @@ async function insertCategory(req,res){
 
         var notInserted =[],inserted=[]; 
         let categories = [
-            { name:"Nikon", type:"Mirrorless", model:"2018" },
-            { name:"Nikon", type:"abc", model:"2018" },
-            { name:"Nikon", type:"andd", model:"2018" },
+            { name:"yukfgbjb", type:"full frame", model:"2018" },
+            { name:"kfkyuh", type:"Mirrorless", model:"2018" },
+            { name:"on", type:"f frame", model:"2018" },
         ];
         console.log("Going Loop");
         // async.forEach( categories,async function(element,next){
@@ -37,7 +37,7 @@ async function insertCategory(req,res){
             let isValidCategory = categoryValidation.validCategory(categories[i]);
             console.log('isValidCategory isValidCategory',isValidCategory);
             if(isValidCategory){
-                let isExistCategory = await domain.Category.find({ name: categories[i].name }).lean();
+                let isExistCategory = await domain.Category.find({ name: categories[i].name, type:categories[i].type }).lean();
                 console.log("isExistCategory isExistCategory",isExistCategory);
                 if(isExistCategory.length >0){
                     console.log("ifi if if fif if f")
@@ -45,7 +45,7 @@ async function insertCategory(req,res){
                 }else{
                     console.log("else else else")
                     let insertedCategory = await domain.Category.findOneAndUpdate({
-                        name: categories[i].name,
+                        name: categories[i].name, type:categories[i].type
                     },{ 
                         $set: {  name:categories[i].name, type:categories[i].type, model:categories[i].model }
                     },{ upsert: true});

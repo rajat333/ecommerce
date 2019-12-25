@@ -22,9 +22,15 @@ var getUserCart = function(req,res){
         productService.getUserCart(req,res);
 }
 
+var addProduct = function(req,res){
+    console.log("addProduct addProduct");
+    productService.addProduct(req,res);
+}
+
 module.exports  = {
     listAllProduct: listAllProduct,
     getCategoryBasedProduct: getCategoryBasedProduct,
     addtoCart: addtoCart,
-    getUserCart:getUserCart
+    getUserCart:getUserCart,
+    addProduct:addProduct
 }

@@ -1,3 +1,5 @@
+const categoryDetails = require('../configrations/category.json');
+
 var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
@@ -12,7 +14,7 @@ var CategorySchema = new Schema({
     type:{
       type: String,
       required: true,
-      enum: ["Mirrorless", "full frame", "point and shoot"],
+      enum: categoryDetails.categoryList,
     },
     model: { 
       type: String, 

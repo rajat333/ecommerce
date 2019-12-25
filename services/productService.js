@@ -9,10 +9,10 @@ const async = require('async');
 async function listAllProduct(req,res){
 
         try{
-        let listOfCategory =  await domain.Product.find({}).lean();
-        setResponse.setSuccess( configrationHolder.Success.CategoryList,
-            configrationHolder.InternalAppMessage.CategoryList,
-            { categoryList: listOfCategory },true,res);
+        let listOfProducts =  await domain.Product.find({}).lean();
+        setResponse.setSuccess( configrationHolder.Success.ProductList, 
+            configrationHolder.InternalAppMessage.ProductList,
+            { productList: listOfProducts },false,res);
 
         }catch(e){
             setResponse.setSuccess( configrationHolder.Error.ExceptionOccur,
@@ -95,9 +95,56 @@ var getUserCart = async function(req,res){
     }
 }
 
+var addProduct = async function(req,res){
+
+        console.log("Prod Service addProduct",req.body);
+        let product = req.body;
+        console.log("product product",product);
+        try{
+            console.log("product product",product);
+            let isValidProduct = productValidation.isValidProduct(product);
+            console.log("isValidProduct isValidProduct",isValidProduct);
+            if(isValidProduct){
+                 let existCategory = await domain.Category.find({ name: product.category }).lean();
+                 console.log("existCategory existCategory",existCategory);
+                 if(existCategory.length >0){
+                    let productData = new domain.Product(product);
+                    productData.save(function(err,data){
+                            if(err){
+                                setResponse.setSuccess( configrationHolder.Error.ExceptionOccur,
+                                    configrationHolder.InternalAppMessage.ExceptionOccur,
+                                    { },true,res);
+                            }else{
+                                setResponse.setSuccess( configrationHolder.Success.ProductInsert,
+                                    configrationHolder.InternalAppMessage.ProductInsert,
+                                    { productDetails: data },false,res);
+                            }
+
+                    });
+                }else{
+                    // Category not exist
+                    setResponse.setSuccess( configrationHolder.Error.CategoryNotExist,
+                        configrationHolder.InternalAppMessage.CategoryNotExist,
+                        { },true,res);
+                }
+            }else{
+                console.log("in Else ")
+                setResponse.setSuccess( configrationHolder.Error.ValidationFail,
+                    configrationHolder.InternalAppMessage.ValidationFail,
+                    { },true,res);
+            }
+        }catch(e){
+            console.log("Exception ",e);
+            setResponse.setSuccess( configrationHolder.Error.ExceptionOccur,
+                configrationHolder.InternalAppMessage.ExceptionOccur,
+                { },true,res);  
+        }
+}
+
 module.exports = {
     listAllProduct : listAllProduct,    
     getCategoryBasedProduct: getCategoryBasedProduct,
     addtoCart: addtoCart,
-    getUserCart: getUserCart
+    getUserCart: getUserCart,
+    addProduct:addProduct
 }

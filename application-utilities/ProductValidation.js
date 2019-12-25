@@ -1,4 +1,6 @@
-let category = ["Mirrorless", "full frame", "point and shoot"];
+const categoryDetails = require('../configrations/category.json');
+
+var category = categoryDetails.categoryList;
 var validateCartProduct = function(productData){
     
       let keys = Object.keys(productData);
@@ -11,6 +13,19 @@ var validateCartProduct = function(productData){
        }
 }
 
+var addProduct = (productData)=>{
+     console.log("Add Prod Validation")
+     let keys = Object.keys(productData);
+     if(keys.includes('name') && keys.includes('category') && 
+        keys.includes('description') && keys.includes('make') && keys.includes('price') ){
+          return true;        
+     }else{
+          return false;
+     }
+};   
+
 module.exports= {
-    validateCartProduct: validateCartProduct 
+    validateCartProduct: validateCartProduct,
+    addProduct: addProduct,
+    isValidProduct:addProduct 
 }

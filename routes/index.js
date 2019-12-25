@@ -13,17 +13,13 @@ router.get('/', function(req, res, next) {
 router.post('/users/registerUser',userCtrl.registerUser);
 router.post('/users/login',userCtrl.login);
 
-router.post('/category/list',authenticationMiddleware.authenticateUser, categoryCtrl.listAllCategory);
+router.get('/category/list',authenticationMiddleware.authenticateUser, categoryCtrl.listAllCategory);
 router.post('/category/insertion',authenticationMiddleware.authenticateUser, categoryCtrl.insertCategory);
 
-router.post('/product/list',authenticationMiddleware.authenticateUser,productCtrl.listAllProduct);
+router.get('/product/list',authenticationMiddleware.authenticateUser,productCtrl.listAllProduct);
 router.post('/product/category',authenticationMiddleware.authenticateUser, productCtrl.getCategoryBasedProduct);
 router.post('/product/addtoCart',authenticationMiddleware.authenticateUser,productCtrl.addtoCart);
 router.post('/product/userCart',authenticationMiddleware.authenticateUser,productCtrl.getUserCart);
-
-// router.post('/users/registerUser',function(req,res,next){
-//   console.log("in index file");
-//   userCtrl.registerUser(req,res,next);
-// });
+router.post('/product/addProduct',authenticationMiddleware.authenticateUser,productCtrl.addProduct);
 
 module.exports = router;
