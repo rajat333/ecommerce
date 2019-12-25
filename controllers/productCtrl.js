@@ -12,7 +12,12 @@ var getCategoryBasedProduct = function(req,res){
     productService.getCategoryBasedProduct(req,res);
 }
 
+var addtoCart = function(req,res){
+    console.log("addtoCart ProdCTRL");
+    productService.addtoCart(req,res);
+}
 module.exports  = {
     listAllProduct: listAllProduct,
     getCategoryBasedProduct: getCategoryBasedProduct,
+    addtoCart: addtoCart,
 }

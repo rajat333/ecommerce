@@ -25,7 +25,7 @@ var ProductSchema = new Schema({
     },
     remaningQuantity:{
       type:Number,
-      required: true
+      required: false
     },
     price:{
       type: String,

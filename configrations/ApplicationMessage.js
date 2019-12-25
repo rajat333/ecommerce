@@ -14,7 +14,9 @@ var SuccessMessage = {
         Login: 'Successfully Login User',   
         CategoryList:"Successfully Get Category List", 
         ProductList:"Successfully Get Product List", 
-        ProductBasedOnCategory:"Successfully Get Product on Category Basis"
+        ProductBasedOnCategory:"Successfully Get Product on Category Basis",
+        NoCategory:"Sorry, no categoryExist for the product you are adding to cart",
+        AddToCart:"Successfully Added Product To Cart"
         
 };
 
@@ -28,7 +30,9 @@ var InternalAppMessage = {
        UserExist: 'App.Username.Exist',
        CategoryList:"App.Category.List",
        ProductList:"App.ProductList.List",
-       ProductBasedOnCategory:"App.Product.Category.List"
+       ProductBasedOnCategory:"App.Product.Category.List",
+       NoCategory:"App.NotExistence.Category",
+       AddToCart:"App.Product.Added.Cart"
 }
 
 var Keys  = {

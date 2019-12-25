@@ -15,8 +15,8 @@ router.post('/users/login',userCtrl.login);
 
 router.post('/category/list',authenticationMiddleware.authenticateUser, categoryCtrl.listAllCategory);
 router.post('/product/list',authenticationMiddleware.authenticateUser,productCtrl.listAllProduct);
-router.post('/product/category',authenticationMiddleware.authenticateUser,userCtrl.login);
-router.post('/product/addtoCart',userCtrl.login);
+router.post('/product/category',authenticationMiddleware.authenticateUser, productCtrl.getCategoryBasedProduct);
+router.post('/product/addtoCart',authenticationMiddleware.authenticateUser,productCtrl.addtoCart);
 router.post('/product/user',userCtrl.login);
 
 // router.post('/users/registerUser',function(req,res,next){
