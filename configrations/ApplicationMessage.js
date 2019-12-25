@@ -5,7 +5,8 @@ var ErrorMessage = {
         LoginFail: 'Please enter valid username or password',
         UserExist: 'User Exist With this mailid. Please choose different mailid',
         ExceptionOccur : 'Sorry, we are facing some technical issue. Please try again later.',
-        CategoryNotExist:"Category didn't exist for product you are adding."
+        CategoryNotExist:"Category didn't exist for product you are adding.",
+        NotAuthorized:"Sorry, you are not Authorized"
 };
 
 var SuccessMessage = {
@@ -39,7 +40,8 @@ var InternalAppMessage = {
        GetCart: "App.Product.GetCart",
        InsertedCategory:"App.Category.Insert",
        ProductInsert:"App.Insert.Product",
-       CategoryNotExist:"App.ProductAdd.Category.NotExist"
+       CategoryNotExist:"App.ProductAdd.Category.NotExist",
+       NotAuthorized:"App.User.NotAuthorized"
 }
 
 var Keys  = {

@@ -39,21 +39,25 @@ async function getCategoryBasedProduct(req,res){
 }
 
 async function addtoCart(req,res){
-  console.log("Prod Service addto Cart");
+  console.log("Prod Service addto Cart",req.loginUser._id);
    var  userId = req.loginUser._id
-   let isValidProduct = productValidation.validateCartProduct(req.body);
+   let isValidProduct = productValidation.validateCartProduct(req.body.product);
+   console.log("isValidProduct isValidProduct",isValidProduct);
    if(!isValidProduct){
     setResponse.setError( configrationHolder.Error.ValidationFail,
         configrationHolder.InternalAppMessage.ValidationFail,
         {},true,res);
    }else{
-       let productInfo = req.body;
+       let productInfo = req.body.product;
        try{
        // Check Category Exist:
        let isExistCategory = domain.Category.find({  name: productInfo.category }).lean();
         if(isExistCategory){
 
-            let cartAdded = new domain.Cart({ user: userId, productInfo: productInfo });
+            let cartAdded = new domain.Cart({ 
+                user: mongoose.Types.ObjectId(userId), 
+                productId: mongoose.Types.ObjectId(productInfo._id), 
+                productInfo: productInfo });
             cartAdded.save(function(err,data){
 
                  if(err){

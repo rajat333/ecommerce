@@ -4,6 +4,7 @@ var category = categoryDetails.categoryList;
 var validateCartProduct = function(productData){
     
       let keys = Object.keys(productData);
+      console.log("key s",keys);
       if(  keys.includes('name') && keys.includes('description') &&
            keys.includes('price') &&  keys.includes('make') && keys.includes('category')
        ){

@@ -1,7 +1,7 @@
 const domain = require('../model/index');
 const jwt = require('jsonwebtoken');
 const configrationHolder = require('../configrations/ApplicationMessage');
-
+const setResponse = require('../application-utilities/SetResponse');
 function authenticateUser(req,res,next){
 
     console.log('>>> In authentication middleware >>>',req.headers.authorization);
@@ -9,6 +9,9 @@ function authenticateUser(req,res,next){
         console.log("jwt verification ",err,data);
         if(err){
             console.log('error occur');
+            setResponse.setError( configrationHolder.Error.NotAuthorized,
+                configrationHolder.InternalAppMessage.NotAuthorized,
+                {},true,res);
         }else{
             console.log("proceed further");
             //find Login User 

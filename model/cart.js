@@ -6,9 +6,14 @@ var CartSchema = new Schema({
     createdAt: { type: Date },
     updatedAt: { type: Date, default: Date.now },
     user:{
-        type: String,
+        type: 'ObjectId',
         required: true,
-        ref:"users"
+        ref:"User"
+    },
+    productId:{
+      type: 'ObjectId',
+      required: true,
+      ref:"Product"
     },
     productInfo:{
       type: Object,
