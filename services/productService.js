@@ -3,6 +3,7 @@ const setResponse = require('../application-utilities/SetResponse');
 const configrationHolder  = require('../configrations/ApplicationMessage'); 
 const productValidation = require("../application-utilities/ProductValidation");
 const domain = require('../model/index');
+const mongoose = require('mongoose');
 
 async function listAllProduct(req,res){
 
@@ -67,18 +68,35 @@ async function addtoCart(req,res){
                  }
             })
         }else{
-            setResponse.setSuccess( configrationHolder.Success.ProductBasedOnCategory,
-                configrationHolder.InternalAppMessage.ProductBasedOnCategory,
+            setResponse.setSuccess( configrationHolder.Success.NoCategory,
+                configrationHolder.InternalAppMessage.NoCategory,
                 { },true,res);
-        }
+        } 
        }catch(e){
-
+        setResponse.setSuccess( configrationHolder.Error.ExceptionOccur,
+            configrationHolder.InternalAppMessage.ExceptionOccur,
+            { },true,res);
        }
    }
+}
+
+var getUserCart = async function(req,res){
+    console.log("getUserCart Prod Service loginUser",req.loginUser);
+    try{
+        let cartList = await domain.Cart.find({ user: mongoose.Types.ObjectId(req.loginUser._id) }).lean()
+        setResponse.setSuccess( configrationHolder.Success.GetCart,
+            configrationHolder.InternalAppMessage.GetCart,
+            { cartList: cartList },false,res);
+    }catch(err){
+        setResponse.setSuccess( configrationHolder.Error.ExceptionOccur,
+            configrationHolder.InternalAppMessage.ExceptionOccur,
+            { },true,res);
+    }
 }
 
 module.exports = {
     listAllProduct : listAllProduct,    
     getCategoryBasedProduct: getCategoryBasedProduct,
-    addtoCart: addtoCart
+    addtoCart: addtoCart,
+    getUserCart: getUserCart
 }

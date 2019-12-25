@@ -16,8 +16,15 @@ var addtoCart = function(req,res){
     console.log("addtoCart ProdCTRL");
     productService.addtoCart(req,res);
 }
+
+var getUserCart = function(req,res){
+        console.log("getUserCart getUserCart CTRL");
+        productService.getUserCart(req,res);
+}
+
 module.exports  = {
     listAllProduct: listAllProduct,
     getCategoryBasedProduct: getCategoryBasedProduct,
     addtoCart: addtoCart,
+    getUserCart:getUserCart
 }

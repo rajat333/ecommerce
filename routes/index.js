@@ -17,7 +17,7 @@ router.post('/category/list',authenticationMiddleware.authenticateUser, category
 router.post('/product/list',authenticationMiddleware.authenticateUser,productCtrl.listAllProduct);
 router.post('/product/category',authenticationMiddleware.authenticateUser, productCtrl.getCategoryBasedProduct);
 router.post('/product/addtoCart',authenticationMiddleware.authenticateUser,productCtrl.addtoCart);
-router.post('/product/user',userCtrl.login);
+router.post('/product/userCart',authenticationMiddleware.authenticateUser,productCtrl.getUserCart);
 
 // router.post('/users/registerUser',function(req,res,next){
 //   console.log("in index file");

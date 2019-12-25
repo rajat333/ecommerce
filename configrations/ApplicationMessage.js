@@ -16,7 +16,9 @@ var SuccessMessage = {
         ProductList:"Successfully Get Product List", 
         ProductBasedOnCategory:"Successfully Get Product on Category Basis",
         NoCategory:"Sorry, no categoryExist for the product you are adding to cart",
-        AddToCart:"Successfully Added Product To Cart"
+        AddToCart:"Successfully Added Product To Cart",
+        GetCart:"Successfully Get Cart List",
+        InsertedCategory:"Successfully Inserted Category",
         
 };
 
@@ -32,7 +34,9 @@ var InternalAppMessage = {
        ProductList:"App.ProductList.List",
        ProductBasedOnCategory:"App.Product.Category.List",
        NoCategory:"App.NotExistence.Category",
-       AddToCart:"App.Product.Added.Cart"
+       AddToCart:"App.Product.Added.Cart",
+       GetCart: "App.Product.GetCart",
+       InsertedCategory:"App.Category.Insert"
 }
 
 var Keys  = {
