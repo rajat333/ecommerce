@@ -19,6 +19,10 @@ var ProductSchema = new Schema({
       type: String, 
       required: true
     },
+    quantity:{
+      type:String,
+      required: true
+    },
     email:{
       type: String,
       required: true

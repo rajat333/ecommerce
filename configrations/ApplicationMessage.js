@@ -11,7 +11,11 @@ var ErrorMessage = {
 var SuccessMessage = {
 
         Register: 'Successfully Register User',
-        Login: 'Successfully Login User',    
+        Login: 'Successfully Login User',   
+        CategoryList:"Successfully Get Category List", 
+        ProductList:"Successfully Get Product List", 
+        ProductBasedOnCategory:"Successfully Get Product on Category Basis"
+        
 };
 
 var InternalAppMessage = {
@@ -21,7 +25,10 @@ var InternalAppMessage = {
        ValidationFail: 'App.Validation.Fail',
        ExceptionOccur: 'App.Exception.Error',
        LoginFail: 'App.Login.Fail', 
-       UserExist: 'App.Username.Exist'
+       UserExist: 'App.Username.Exist',
+       CategoryList:"App.Category.List",
+       ProductList:"App.ProductList.List",
+       ProductBasedOnCategory:"App.Product.Category.List"
 }
 
 var Keys  = {

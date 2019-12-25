@@ -1,9 +1,9 @@
-var async = require('async');
-var domain = require('../model/index');
-var jwt = require('jsonwebtoken');
-var userValidation = require('../application-utilities/UserValidation');
-var setResponse = require('../application-utilities/SetResponse');
-var configrationHolder  = require('../configrations/ApplicationMessage'); 
+const async = require('async');
+const domain = require('../model/index');
+const jwt = require('jsonwebtoken');
+const userValidation = require('../application-utilities/UserValidation');
+const setResponse = require('../application-utilities/SetResponse');
+const configrationHolder  = require('../configrations/ApplicationMessage'); 
 
 
 async function registerUser( bodyData,res){
