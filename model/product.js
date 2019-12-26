@@ -43,7 +43,6 @@ var Product = mongoose.model('Product', ProductSchema);
 // on every save, add the date
 ProductSchema.pre('findOneAndUpdate', function(next) {
   // get the current date
-  console.log("this pre save ",this);
   var currentDate = new Date();
   // change the updated_at field to current date
   this.updatedAt = currentDate;

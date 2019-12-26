@@ -9,7 +9,6 @@ const configrationHolder  = require('../configrations/ApplicationMessage');
 async function registerUser( bodyData,res){
 
     var isValid  =  userValidation.registerValidation(bodyData);   
-    console.log("isValid isValid isValid",isValid);
     if(!isValid){
         setResponse.setError( configrationHolder.Error.ValidationFail,
                 configrationHolder.InternalAppMessage.ValidationFail,
@@ -17,7 +16,6 @@ async function registerUser( bodyData,res){
     }else{
         try{
             var userExistWithUserName =  await domain.User.find({ email: { $regex: bodyData.email, $options:'i' } });
-            console.log("userExistWithUserName userExistWithUserName",userExistWithUserName);
             if(userExistWithUserName.length > 0){
                 setResponse.setError( configrationHolder.Error.UserExist,
                         configrationHolder.InternalAppMessage.UserExist,{},true,res );
@@ -26,7 +24,6 @@ async function registerUser( bodyData,res){
                 let userObj = new domain.User( bodyData);
                 userObj.save(function(err,result){
                     if(err) {
-                        console.log("err err",err);
                         setResponse.setError(  configrationHolder.Error.ExceptionOccur,
                                 configrationHolder.InternalAppMessage.ExceptionOccur,
                                 {},true,res); 
@@ -42,7 +39,6 @@ async function registerUser( bodyData,res){
             
         
             }catch(err){
-                console.log("exception",err);
                 setResponse.setError( configrationHolder.Error.ExceptionOccur,
                     configrationHolder.InternalAppMessage.ExceptionOccur,
                     {}, true,res);
@@ -55,7 +51,6 @@ async function registerUser( bodyData,res){
 async function login(bodyData, res){
 
     let isValid = userValidation.loginValidation(bodyData);
-    console.log("in Login isValid ",isValid)
     if(!isValid){
         setResponse.setError( configrationHolder.Error.ValidationFail,
                 configrationHolder.InternalAppMessage.ValidationFail,
@@ -80,13 +75,11 @@ async function login(bodyData, res){
                           email: validUser[0].email, mobile: validUser[0].mobile
                       }, false,res);
               }else{
-                console.log("in final else");
                   setResponse.setError( configrationHolder.Error.LoginFail,
                       configrationHolder.InternalAppMessage.LoginFail,
                       { }, true, res );
               }
           }catch(err){
-              console.log("in catch",err);
               setResponse.setError( configrationHolder.Error.ExceptionOccur,
                       configrationHolder.InternalAppMessage.ExceptionOccur,
                       {}, true,res);

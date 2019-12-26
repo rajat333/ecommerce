@@ -1,19 +1,14 @@
 
 
 var registerValidation = function(jsonData){
-    console.log('registerValidation ');
     var keys  = Object.keys(jsonData);
      if( keys.includes('name') 
-     //&& keys.includes('username') 
      && keys.includes('password') && keys.includes('confirmPassword')
      && keys.includes('email') && keys.includes('mobile')
      ){
 
        let validPassword =  checkPassword( jsonData.password , jsonData.confirmPassword);
-        console.log(' Pas word check  ',checkPassword( jsonData.password && jsonData.confirmPassword));
        let validEmail =  validateEmail( jsonData.email); 
-        console.log('Email Check  >>>>',validateEmail( jsonData.email));
-
         if( validPassword && validEmail )
          return true;
         else 

@@ -28,7 +28,6 @@ var Category = mongoose.model('Category', CategorySchema);
 // on every save, add the date
 CategorySchema.pre('findOneAndUpdate', function(next) {
     // get the current date
-    console.log("pre save",this);
     var currentDate = new Date();
     if (!this.created_at)
       this.createdAt = currentDate;

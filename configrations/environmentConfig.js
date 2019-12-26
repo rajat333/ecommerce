@@ -25,7 +25,12 @@ var getEnvironmentData = function(){
                         }
                     break;
         default:    
-                console.log('>>>>>>In>>Deafult>>Case>>>>');                            
+                return{
+                    port:3001,
+                    dev: true,
+                    prod: false,
+                }
+                break;                         
     }
     // return true;
 };

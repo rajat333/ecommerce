@@ -24,26 +24,15 @@ async function listAllCategory(req,res){
 async function insertCategory(req,res){
 
         var notInserted =[],inserted=[]; 
-        let categories = [
-            { name:"yukfgbjb", type:"full frame", model:"2018" },
-            { name:"kfkyuh", type:"Mirrorless", model:"2018" },
-            { name:"on", type:"f frame", model:"2018" },
-        ];
-        console.log("Going Loop");
-        // async.forEach( categories,async function(element,next){
+        let categories = req.body.categories;
         try{ 
         for(let i=0; i< categories.length;i++){   
-            console.log("element element ",categories[i]);
             let isValidCategory = categoryValidation.validCategory(categories[i]);
-            console.log('isValidCategory isValidCategory',isValidCategory);
             if(isValidCategory){
                 let isExistCategory = await domain.Category.find({ name: categories[i].name, type:categories[i].type }).lean();
-                console.log("isExistCategory isExistCategory",isExistCategory);
                 if(isExistCategory.length >0){
-                    console.log("ifi if if fif if f")
                     notInserted.push(categories[i]); 
                 }else{
-                    console.log("else else else")
                     let insertedCategory = await domain.Category.findOneAndUpdate({
                         name: categories[i].name, type:categories[i].type
                     },{ 

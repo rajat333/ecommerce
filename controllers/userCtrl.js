@@ -7,7 +7,6 @@ var registerUser = function(req,res){
 };
 
 var login = function(req,res){
-    console.log("in login");
     userService.login(req.body,res);
 };
 

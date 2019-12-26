@@ -30,7 +30,7 @@ async function getCategoryBasedProduct(req,res){
                 configrationHolder.InternalAppMessage.ProductBasedOnCategory,
                 { productList: productList },false,res);
             }catch(e){
-                console.log("productList ",e);
+                console.log("Exception ",e);
                 setResponse.setSuccess( configrationHolder.Error.ExceptionOccur,
                     configrationHolder.InternalAppMessage.ExceptionOccur,
                     {},true,res);
@@ -39,10 +39,8 @@ async function getCategoryBasedProduct(req,res){
 }
 
 async function addtoCart(req,res){
-  console.log("Prod Service addto Cart",req.loginUser._id);
-   var  userId = req.loginUser._id
-   let isValidProduct = productValidation.validateCartProduct(req.body.product);
-   console.log("isValidProduct isValidProduct",isValidProduct);
+  var  userId = req.loginUser._id
+  let isValidProduct = productValidation.validateCartProduct(req.body.product);
    if(!isValidProduct){
     setResponse.setError( configrationHolder.Error.ValidationFail,
         configrationHolder.InternalAppMessage.ValidationFail,
@@ -58,7 +56,7 @@ async function addtoCart(req,res){
                 user: mongoose.Types.ObjectId(userId), 
                 productId: mongoose.Types.ObjectId(productInfo._id), 
                 productInfo: productInfo });
-            cartAdded.save(function(err,data){
+                cartAdded.save(function(err,data){
 
                  if(err){
                      console.log("err err",err);
@@ -67,7 +65,6 @@ async function addtoCart(req,res){
                         { },true,res);
                  }else{
                      // Successfully added product to cart
-                    console.log("Successfully added to cart based on user preference");
                     setResponse.setSuccess( configrationHolder.Success.AddToCart,
                         configrationHolder.InternalAppMessage.AddToCart,
                         { },false,res);
@@ -87,7 +84,6 @@ async function addtoCart(req,res){
 }
 
 var getUserCart = async function(req,res){
-    console.log("getUserCart Prod Service loginUser",req.loginUser);
     try{
         let cartList = await domain.Cart.find({ user: mongoose.Types.ObjectId(req.loginUser._id) },{productInfo:1, _id:0}).lean();
         setResponse.setSuccess( configrationHolder.Success.GetCart,
@@ -102,16 +98,11 @@ var getUserCart = async function(req,res){
 
 var addProduct = async function(req,res){
 
-        console.log("Prod Service addProduct",req.body);
         let product = req.body;
-        console.log("product product",product);
         try{
-            console.log("product product",product);
             let isValidProduct = productValidation.isValidProduct(product);
-            console.log("isValidProduct isValidProduct",isValidProduct);
             if(isValidProduct){
                  let existCategory = await domain.Category.find({ name: product.category }).lean();
-                 console.log("existCategory existCategory",existCategory);
                  if(existCategory.length >0){
                     let productData = new domain.Product(product);
                     productData.save(function(err,data){
@@ -133,7 +124,6 @@ var addProduct = async function(req,res){
                         { },true,res);
                 }
             }else{
-                console.log("in Else ")
                 setResponse.setSuccess( configrationHolder.Error.ValidationFail,
                     configrationHolder.InternalAppMessage.ValidationFail,
                     { },true,res);

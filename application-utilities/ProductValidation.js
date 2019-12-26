@@ -4,7 +4,6 @@ var category = categoryDetails.categoryList;
 var validateCartProduct = function(productData){
     
       let keys = Object.keys(productData);
-      console.log("key s",keys);
       if(  keys.includes('name') && keys.includes('description') &&
            keys.includes('price') &&  keys.includes('make') && keys.includes('category')
        ){
@@ -15,7 +14,6 @@ var validateCartProduct = function(productData){
 }
 
 var addProduct = (productData)=>{
-     console.log("Add Prod Validation")
      let keys = Object.keys(productData);
      if(keys.includes('name') && keys.includes('category') && 
         keys.includes('description') && keys.includes('make') && keys.includes('price') ){

@@ -32,7 +32,6 @@ var Cart = mongoose.model('Cart', CartSchema);
 // on every save, add the date
 CartSchema.pre('save', function(next) {
     // get the current date
-    console.log("pre save",this);
     var currentDate = new Date();
     if (!this.created_at)
       this.createdAt = currentDate;
